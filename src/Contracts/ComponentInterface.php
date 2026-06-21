@@ -19,11 +19,15 @@ interface ComponentInterface
 
     /**
      * Options declaratives attachees au composant.
+     *
+     * @return array<string, mixed>
      */
     public function getProps(): array;
 
     /**
      * Composants enfants declares sous ce composant.
+     *
+     * @return list<ComponentInterface>
      */
     public function getChildren(): array;
 
@@ -34,6 +38,8 @@ interface ComponentInterface
 
     /**
      * Representation interne stable utilisee par les renderers.
+     *
+     * @return array<string, mixed>
      */
     public function toArray(): array;
 }

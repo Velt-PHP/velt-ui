@@ -17,6 +17,30 @@ use Velt\Ui\Renderers\WebRenderer;
 
 class WebRendererTest extends TestCase
 {
+    public function test_it_renders_declared_stylesheets_and_skips_the_meta_tag(): void
+    {
+        $page = Page::make('Styled')->meta([
+            'stylesheets' => ['/assets/app.css', 'https://cdn.example.com/theme.css'],
+        ]);
+
+        $html = (new WebRenderer())->render($page);
+
+        $this->assertStringContainsString('<link rel="stylesheet" href="/assets/app.css">', $html);
+        $this->assertStringContainsString('<link rel="stylesheet" href="https://cdn.example.com/theme.css">', $html);
+        $this->assertStringNotContainsString('name="stylesheets"', $html);
+    }
+
+    public function test_it_renders_common_id_and_class_attributes(): void
+    {
+        $page = Page::make('Attributes')->add(
+            Card::make()->id('next-steps')->class('panel')
+        );
+
+        $html = (new WebRenderer())->render($page);
+
+        $this->assertStringContainsString('<section id="next-steps" class="panel">', $html);
+    }
+
     public function test_login_page_renders_stable_html_document(): void
     {
         $page = Page::make('Connexion')

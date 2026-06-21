@@ -21,6 +21,7 @@ final class JsonRenderer implements RendererInterface
     /**
      * Encode l'arbre Preview en JSON.
      */
+    /** @param array<string, mixed> $options */
     public function render(Page $page, array $options = []): string
     {
         return json_encode(
@@ -35,6 +36,7 @@ final class JsonRenderer implements RendererInterface
      * Les tests et futurs adaptateurs Preview peuvent inspecter le schema sans
      * parser une chaine JSON.
      */
+    /** @return array<string, mixed> */
     public function toPreviewArray(Page $page): array
     {
         $tree = $page->toArray();
@@ -51,6 +53,10 @@ final class JsonRenderer implements RendererInterface
         ];
     }
 
+    /**
+     * @param array<string, mixed> $component
+     * @return array<string, mixed>
+     */
     private function componentToPreview(array $component): array
     {
         $preview = [
@@ -81,6 +87,10 @@ final class JsonRenderer implements RendererInterface
         return $preview;
     }
 
+    /**
+     * @param array<string, mixed> $component
+     * @return array<string, mixed>
+     */
     private function propsForPreview(array $component): array
     {
         $props = $component['props'] ?? [];

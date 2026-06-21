@@ -21,6 +21,8 @@ final class Html
      * Rend un tableau associatif en attributs HTML.
      *
      * true devient un attribut booleen, null et false sont ignores.
+     *
+     * @param array<string, mixed> $attributes
      */
     public static function attributes(array $attributes): string
     {

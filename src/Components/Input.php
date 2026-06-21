@@ -84,6 +84,7 @@ class Input extends Component
     /**
      * Retourne le tableau du composant avec name et label.
      */
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         $array = parent::toArray();
