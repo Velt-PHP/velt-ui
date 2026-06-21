@@ -2,11 +2,13 @@
 
 Documentation complete : [docs/README.md](docs/README.md)
 
+Architecture developpeur detaillee : [docs/ARCHITECTURE_DEVELOPPEUR.md](docs/ARCHITECTURE_DEVELOPPEUR.md)
+
+Architecture detaillee des dossiers, fichiers et flux : [docs/ARCHITECTURE_DETAILLEE.md](docs/ARCHITECTURE_DETAILLEE.md)
+
+Rapport pour memoire de defense : [docs/RAPPORT_MEMOIRE_DEFENSE.md](docs/RAPPORT_MEMOIRE_DEFENSE.md)
+
 Integration kernel : [docs/KERNEL_INTEGRATION.md](docs/KERNEL_INTEGRATION.md)
-
-Connexion locale faite avec le kernel : [docs/KERNEL_CONNECTION_DONE.md](docs/KERNEL_CONNECTION_DONE.md)
-
-Issue a creer cote kernel : [docs/ISSUE_KERNEL_UI_CONNECTION.md](docs/ISSUE_KERNEL_UI_CONNECTION.md)
 
 Guide de contribution : [CONTRIBUTING.md](CONTRIBUTING.md)
 

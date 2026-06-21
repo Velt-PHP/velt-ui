@@ -318,7 +318,6 @@ class PageAndComponentsTest extends TestCase
 
         $json = $page->toJson();
 
-        $this->assertIsString($json);
         $decoded = json_decode($json, true);
 
         $this->assertIsArray($decoded);

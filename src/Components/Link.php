@@ -40,6 +40,7 @@ class Link extends Component
     /**
      * Retourne le tableau du composant avec href.
      */
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         $array = parent::toArray();

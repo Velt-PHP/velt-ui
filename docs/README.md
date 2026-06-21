@@ -2,9 +2,15 @@
 
 Velt UI est le sous-module qui decrit une interface Velt en PHP declaratif, puis la transforme en sorties consommables par le reste du framework.
 
+Pour comprendre l'architecture interne, les classes, les flux entre fichiers et le fonctionnement du code, voir [ARCHITECTURE_DEVELOPPEUR.md](ARCHITECTURE_DEVELOPPEUR.md).
+
+Pour une carte encore plus detaillee des dossiers, fichiers et flux de donnees web/json, voir [ARCHITECTURE_DETAILLEE.md](ARCHITECTURE_DETAILLEE.md).
+
+Pour un rapport directement exploitable en memoire de defense, voir [RAPPORT_MEMOIRE_DEFENSE.md](RAPPORT_MEMOIRE_DEFENSE.md).
+
+Pour une lecture ligne par ligne du code oriente objet du module, voir [EXPLICATION_CODE_OO.md](EXPLICATION_CODE_OO.md).
+
 Pour l'integration avec le kernel Velt, voir [KERNEL_INTEGRATION.md](KERNEL_INTEGRATION.md).
-Pour la connexion locale deja faite avec `veltphp-kernel`, voir [KERNEL_CONNECTION_DONE.md](KERNEL_CONNECTION_DONE.md).
-Pour l'issue a creer cote kernel, voir [ISSUE_KERNEL_UI_CONNECTION.md](ISSUE_KERNEL_UI_CONNECTION.md).
 
 Le module ne gere pas les routes, les controleurs, la session, les assets ou le cycle HTTP complet. Son role est volontairement plus precis :
 

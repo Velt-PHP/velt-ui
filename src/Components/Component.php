@@ -47,11 +47,13 @@ abstract class Component implements ComponentInterface
      * - href: '/dashboard'
      * - required: true
      */
+    /** @var array<string, mixed> */
     protected array $props = [];
 
     /**
      * Composants enfants.
      */
+    /** @var list<ComponentInterface> */
     protected array $children = [];
 
     /**
@@ -97,6 +99,11 @@ abstract class Component implements ComponentInterface
         return $this->prop('class', $class);
     }
 
+    public function id(string $id): static
+    {
+        return $this->prop('id', $id);
+    }
+
     /**
      * Conserve une condition logique pour les renderers qui la comprennent.
      *
@@ -114,7 +121,7 @@ abstract class Component implements ComponentInterface
      *
      * ->add(Text::make('Texte'))
      */
-    public function add(object $child): static
+    public function add(ComponentInterface $child): static
     {
         $this->children[] = $child;
 
@@ -131,6 +138,7 @@ abstract class Component implements ComponentInterface
      *     Button::make('Cliquer'),
      * ])
      */
+    /** @param list<ComponentInterface> $children */
     public function children(array $children): static
     {
         $this->children = $children;
@@ -141,6 +149,7 @@ abstract class Component implements ComponentInterface
     /**
      * Retourne les enfants du composant.
      */
+    /** @return list<ComponentInterface> */
     public function getChildren(): array
     {
         return $this->children;
@@ -149,6 +158,7 @@ abstract class Component implements ComponentInterface
     /**
      * Retourne les props du composant.
      */
+    /** @return array<string, mixed> */
     public function getProps(): array
     {
         return $this->props;
@@ -175,7 +185,7 @@ abstract class Component implements ComponentInterface
      *
      * Cette méthode est appelée par les renderers (WebRenderer, JsonRenderer).
      *
-     * @return array Structure : ['type' => '...', 'props' => [...], 'content' => '...', 'children' => [...]]
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
@@ -190,13 +200,7 @@ abstract class Component implements ComponentInterface
 
         if (! empty($this->children)) {
             $array['children'] = array_map(
-                function ($child) {
-                    if (method_exists($child, 'toArray')) {
-                        return $child->toArray();
-                    }
-
-                    return $child;
-                },
+                static fn (ComponentInterface $child): array => $child->toArray(),
                 $this->children
             );
         }

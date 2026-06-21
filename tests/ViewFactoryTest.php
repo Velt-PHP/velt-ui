@@ -53,6 +53,17 @@ PHP);
         $this->assertSame('Connexion', $preview['screen']);
     }
 
+    public function test_make_loads_real_login_page_from_resources_views(): void
+    {
+        $factory = new ViewFactory(__DIR__ . '/../resources/views');
+
+        $page = $factory->make('auth.login');
+
+        $this->assertInstanceOf(Page::class, $page);
+        $this->assertSame('Connexion', $page->title());
+        $this->assertSame('auth', $page->getLayout());
+    }
+
     public function test_missing_view_throws_view_not_found_exception(): void
     {
         $this->expectException(ViewNotFoundException::class);

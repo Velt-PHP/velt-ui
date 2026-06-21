@@ -14,5 +14,6 @@ use Velt\Ui\Page;
  */
 interface RendererInterface
 {
+    /** @param array<string, mixed> $options */
     public function render(Page $page, array $options = []): string;
 }

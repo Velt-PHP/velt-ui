@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Velt\Ui;
 
+use Velt\Ui\Contracts\ComponentInterface;
 use Velt\Ui\Contracts\ViewInterface;
 use Velt\Ui\Renderers\JsonRenderer;
 
@@ -48,6 +49,7 @@ class Page implements ViewInterface
     /**
      * Métadonnées SEO de la page.
      */
+    /** @var array<string, mixed> */
     protected array $meta = [];
 
     /**
@@ -59,6 +61,7 @@ class Page implements ViewInterface
      * - Form
      * - Button
      */
+    /** @var list<ComponentInterface> */
     protected array $children = [];
 
     /**
@@ -108,6 +111,7 @@ class Page implements ViewInterface
      *     'description' => 'Page de connexion'
      * ])
      */
+    /** @param array<string, mixed> $meta */
     public function meta(array $meta): self
     {
         $this->meta = $meta;
@@ -122,7 +126,7 @@ class Page implements ViewInterface
      *
      * ->add(Card::make())
      */
-    public function add(object $component): self
+    public function add(ComponentInterface $component): self
     {
         $this->children[] = $component;
 
@@ -132,6 +136,7 @@ class Page implements ViewInterface
     /**
      * Retourne tous les composants enfants.
      */
+    /** @return list<ComponentInterface> */
     public function children(): array
     {
         return $this->children;
@@ -156,6 +161,7 @@ class Page implements ViewInterface
     /**
      * Retourne les métadonnées.
      */
+    /** @return array<string, mixed> */
     public function getMeta(): array
     {
         return $this->meta;
@@ -170,6 +176,7 @@ class Page implements ViewInterface
      * - Preview API
      * - potentiellement un renderer mobile futur
      */
+    /** @return array<string, mixed> */
     public function toArray(): array
     {
         return [
@@ -178,13 +185,7 @@ class Page implements ViewInterface
             'layout' => $this->layout,
             'meta' => $this->meta,
             'children' => array_map(
-                function ($child) {
-                    if (method_exists($child, 'toArray')) {
-                        return $child->toArray();
-                    }
-
-                    return $child;
-                },
+                static fn (ComponentInterface $child): array => $child->toArray(),
                 $this->children
             ),
         ];

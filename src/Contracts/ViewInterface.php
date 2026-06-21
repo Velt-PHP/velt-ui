@@ -16,9 +16,12 @@ interface ViewInterface
 
     public function getLayout(): ?string;
 
+    /** @return array<string, mixed> */
     public function getMeta(): array;
 
+    /** @return list<ComponentInterface> */
     public function children(): array;
 
+    /** @return array<string, mixed> */
     public function toArray(): array;
 }
