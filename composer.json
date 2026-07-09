@@ -13,18 +13,6 @@
         "php": "^8.2",
         "velt/kernel": "^0.1.0"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../veltphp-kernel/packages/kernel",
-            "options": {
-                "symlink": true,
-                "versions": {
-                    "velt/kernel": "0.1.0"
-                }
-            }
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Velt\\Ui\\": "src/"
