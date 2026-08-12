@@ -1,4 +1,41 @@
-# Sous-module 04 - UI Rendering
+# Velt UI
+
+Velt UI est le système d’interface déclarative du framework. Une page est construite en PHP à partir de composants typés, puis rendue soit en HTML accessible pour le Web, soit en arbre JSON versionné pour Preview et les renderers natifs. Le même modèle peut ainsi alimenter plusieurs plateformes sans envoyer une WebView à Android.
+
+> Statut : préversion. Le renderer HTML et le contrat JSON minimal sont utilisables ; l’état interactif, l’accessibilité multiplateforme et la compatibilité avec le futur renderer Compose restent des gates avant stabilité.
+
+## Installation et démarrage rapide
+
+```bash
+composer require velt/ui
+```
+
+```php
+use Velt\Ui\Components\Button;
+use Velt\Ui\Components\Card;
+use Velt\Ui\Components\Text;
+use Velt\Ui\Page;
+use Velt\Ui\Renderers\WebRenderer;
+
+$page = Page::make('Dashboard')->add(
+    Card::make()->class('rounded-xl border p-6')
+        ->add(Text::make('Bienvenue')->as('h1'))
+        ->add(Button::make('Continuer')->variant('primary'))
+);
+
+$html = (new WebRenderer())->render($page);
+```
+
+## Principes publics
+
+- une page est un arbre déterministe, pas du HTML caché ;
+- les composants expriment une intention portable ;
+- chaque renderer matérialise cette intention sur sa plateforme ;
+- textes et attributs Web sont échappés par défaut ;
+- le format Preview est versionné indépendamment des classes internes ;
+- UI reste indépendant de HTTP, PDO et Android.
+
+Le package ne fournit pas de routeur, ne génère pas de CSRF sans contrat de session et ne transforme pas automatiquement des classes Tailwind en widgets Compose. Les variantes et futurs tokens portables forment la frontière multiplateforme.
 
 Documentation complete : [docs/README.md](docs/README.md)
 
@@ -157,7 +194,29 @@ Invalidations simples prevues :
 
 Sujets reportes hors Module 1 : hydration, hot reload, build assets, compilation avancee, analyse statique des templates et cache distribue.
 
-## Issues
+## Architecture, compatibilité et qualité
+
+```text
+Page / ComponentInterface
+        |-- WebRenderer  -> HTML échappé
+        |-- JsonRenderer -> schéma Preview versionné
+        `-- Compose renderer Android (cible)
+```
+
+`ComponentInterface`, `ViewInterface` et `RendererInterface` forment la frontière publique. Un changement du JSON exige une fixture dans `velt-preview` et un test côté companion. Les composants interactifs doivent utiliser un identifiant d’événement stable et un payload validé, jamais une chaîne de code exécutable.
+
+Les composants doivent pouvoir exprimer libellé accessible, rôle, état, erreur et ordre de focus. Les gates de release couvrent clavier, lecteur d’écran, contraste, agrandissement du texte et cibles tactiles.
+
+```bash
+composer install
+composer validate --strict
+composer test
+composer analyse
+```
+
+Une modification publique nécessite au minimum un test Web et un test JSON. Les limites connues avant stabilité sont l’état interactif, le renderer Compose, les tokens natifs, le cache/compilateur, l’accessibilité multiplateforme et les migrations automatiques de schéma.
+
+## Feuille de route et issues
 
 - [Issue 01 - Creer Page et composants UI](issues/01-creer-page-composants-ui.md)
 - [Issue 02 - Implementer WebRenderer HTML](issues/02-implementer-web-renderer-html.md)
