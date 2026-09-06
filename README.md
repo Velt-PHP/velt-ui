@@ -39,6 +39,8 @@ Le package ne fournit pas de routeur, ne génère pas de CSRF sans contrat de se
 
 Documentation complete : [docs/README.md](docs/README.md)
 
+Contrat universel Web/Android, tokens, mappings et migration CSS : [docs/CONTRAT_UNIVERSEL.md](docs/CONTRAT_UNIVERSEL.md)
+
 Architecture developpeur detaillee : [docs/ARCHITECTURE_DEVELOPPEUR.md](docs/ARCHITECTURE_DEVELOPPEUR.md)
 
 Architecture detaillee des dossiers, fichiers et flux : [docs/ARCHITECTURE_DETAILLEE.md](docs/ARCHITECTURE_DETAILLEE.md)

@@ -12,6 +12,8 @@ Pour une lecture ligne par ligne du code oriente objet du module, voir [EXPLICAT
 
 Pour l'integration avec le kernel Velt, voir [KERNEL_INTEGRATION.md](KERNEL_INTEGRATION.md).
 
+Pour le contrat UI universel v2, ses tokens, mappings Tailwind/NativeWind/Compose et la migration CSS, voir [CONTRAT_UNIVERSEL.md](CONTRAT_UNIVERSEL.md).
+
 Le module ne gere pas les routes, les controleurs, la session, les assets ou le cycle HTTP complet. Son role est volontairement plus precis :
 
 - construire un arbre UI avec `Page` et les composants MVP ;
@@ -19,6 +21,7 @@ Le module ne gere pas les routes, les controleurs, la session, les assets ou le 
 - rendre cet arbre en JSON stable pour l'application Preview ;
 - charger une page depuis un fichier `.velt.php` ;
 - exposer des contrats publics simples pour le kernel, HTTP et Preview.
+- valider un arbre portable strict pour le Web et Android sans WebView.
 
 ## Installation
 

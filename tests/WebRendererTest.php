@@ -93,6 +93,7 @@ class WebRendererTest extends TestCase
 </html>
 HTML;
 
+    $expected = str_replace(["\r\n", "\r"], "\n", $expected);
         $this->assertSame($expected, $html);
     }
 
